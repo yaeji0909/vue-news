@@ -5,27 +5,19 @@
 </template>
 
 <script>
-import ListItem from '../components/ListItem.vue'
-import bus from "../utils/bus";
+import ListItem from '../components/ListItem.vue';
+/* import bus from '../utils/bus'; */
+
+import ListMixin from "../mixins/ListMixin";
 
 export default {
   components:{
     ListItem
   },
- created() {
-    bus.$emit("start:MainSpinner");
-    setTimeout(() => {
-      this.$store
-        .dispatch("FETCH_JOBS")
-        .then(() => {
-          console.log("fetched");
-          bus.$emit("end:MainSpinner");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 3000);
-  },
+/*    mounted(){
+    bus.$emit('end:MainSpinner');
+  } */
+ mixins:[ListMixin]
 }
 </script>
 
